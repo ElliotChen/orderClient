@@ -1,6 +1,8 @@
 /**
  * Created by elliot on 5/25/17.
  */
+'use strict';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';

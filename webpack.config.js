@@ -25,7 +25,8 @@ var config = {
 						options: {
 							presets:[
 								['es2015', {modules:false, loose:false}]
-							]
+							],
+							plugins: ["transform-class-properties"]
 						}
 					}
 				]
