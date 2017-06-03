@@ -1,7 +1,10 @@
 /**
  * Created by elliot on 5/29/17.
  */
-export const addOrderItem = (menuItemId) => ({
-	type: 'ADD_ORDER_ITEM',
-	menuItemId
+
+const ADD_ORDER_ITEM = 'ADD_ORDER_ITEM';
+
+export const addOrderItem = (orderItem) => ({
+	type: ADD_ORDER_ITEM,
+	orderItem
 });

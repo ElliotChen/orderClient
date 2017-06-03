@@ -1,14 +1,14 @@
 /**
  * Created by elliot on 5/29/17.
  */
-function doAddOrderItem(orderItem = [], action) {
+function orderItemReducer(orderItems = [], action) {
 	switch (action.type) {
 		case 'ADD_ORDER_ITEM':
-			return [];
+			return [ ...orderItems, action.orderItem];
 		default:
-			return orderItem;
+			return orderItems;
 	}
 
 }
 
-export default doAddOrderItem;
+export default orderItemReducer;

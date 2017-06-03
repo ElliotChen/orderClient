@@ -2,10 +2,10 @@
  * Created by elliot on 5/29/17.
  */
 import {combineReducers} from 'redux';
-import doAddOrderItem from './order';
+import orderItemReducer from './order';
 
 const orderApp = combineReducers({
-	doAddOrderItem
+	orderItemReducer
 });
 
 export default orderApp;

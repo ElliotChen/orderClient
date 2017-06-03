@@ -24,7 +24,7 @@ class Menu extends React.Component {
 	render() {
 		return (
 			<div>
-				{fakeItems.map((menuItem) => {return (<MenuItem key={menuItem.id} {...menuItem} />)})}
+				{fakeItems.map((menuItem) => {return (<MenuItem key={menuItem.id} menuItem={menuItem}/>)})}
 				<div>Counter</div>
 			</div>
 		);
