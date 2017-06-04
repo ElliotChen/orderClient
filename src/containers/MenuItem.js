@@ -2,8 +2,10 @@
  * Created by elliot on 5/26/17.
  */
 import React from 'react';
-import { Button, Checkbox, Form } from 'semantic-ui-react';
+import { Button, Input, Checkbox, Form } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { addOrderItem } from '../actions';
 
 class MenuItem extends React.Component {
@@ -12,44 +14,45 @@ class MenuItem extends React.Component {
 
 		this.extraCharge = 0;
 		this.unit = 1;
-		this.selectedOptions = {};
+		this.selectedOptions = [];
 	}
 
-	handleOptionChange = (option, event, target) => {
+	listOption = (option) => {
+		return (
+			<Form.Checkbox key={option.id} value={option.id} label={option.name + ' - ' +option.charge + '元'} onChange={(e, target) => this.onOptionChange(e, target, option)}/>
+		);
+	}
+
+	onOptionChange = (event, target, option) => {
 		console.log(event);
 
 		console.log(target);
-		/*
+
 		if (target.checked) {
-			this.extraCharge += target.value;
-			//this.selectedOptions.push()
+			this.extraCharge += option.charge;
+			this.selectedOptions.push(option)
 		} else {
-			this.extraCharge -= target.value;
+			this.extraCharge -= option.charge;
+			this.selectedOptions = this.selectedOptions.filter((selectedOption) => {return option.id != selectedOption.id});
 		}
 
 		//this.extraCharge = target.checked? this.extraCharge+target.value:this.extraCharge-target.value;
 
 		console.log(this.extraCharge);
-		*/
-	}
-
-	listOption = (option) => {
-		return (
-			<Form.Field key={option.id}>
-				<Checkbox value={option.charge} label={option.name + ' - ' +option.charge + '元'} onChange={(e) => this.handleOptionChange(option, e, this)}/>
-			</Form.Field>
-		);
+		console.log(this.selectedOptions);
 	}
 
 	onAddOrderItem = (event) => {
+		event.preventDefault();
 
 		let orderItem = { ...this.props.menuItem, extraCharge:this.extraCharge, unit:this.unit};
 		console.log(orderItem);
-		dispatch(addOrderItem(orderItem));
+		//dispatch(addOrderItem(orderItem));
 
 	}
 
 	onChangeUnit = (event) => {
+		console.log('trigger change unit');
 		this.unit = event.target.value;
 	}
 	render() {
@@ -59,14 +62,8 @@ class MenuItem extends React.Component {
 					{this.props.menuItem.name}
 
 					{this.props.menuItem.options.map(this.listOption)}
-
-					<Form.Field key={`o_$id`}>
-						<input type='number' value={1} name='unit' onChange={this.onChangeUnit}/>
-					</Form.Field>
-
-					<Button color='blue' onClick={this.onAddOrderItem}>
-						加入
-					</Button>
+					<Form.Input type='number' onChange={this.onChangeUnit} min={1} defaultValue={1}/>
+					<Form.Button color='blue' onClick={this.onAddOrderItem} content="加入"/>
 				</div>
 			</Form>
 		);
