@@ -14,6 +14,7 @@ import {Container, Header, Button} from 'semantic-ui-react';
 import {addOrderItem} from './actions'
 
 import Menu from './components/Menu';
+import ClientBoard from './containers/ClientBoard';
 
 const store = createStore(reducer);
 
@@ -24,6 +25,7 @@ class App extends React.Component {
 				<Container>
 					<Header as='h1'>Header</Header>
 					<Menu />
+					<ClientBoard />
 					<Button primary>Finish</Button>
 				</Container>
 			</Provider>

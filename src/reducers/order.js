@@ -1,14 +1,20 @@
 /**
  * Created by elliot on 5/29/17.
  */
-function orderItemReducer(orderItems = [], action) {
+function orderItems(orderItems = [], action) {
+	console.log(`trigger ${action.type}`);
 	switch (action.type) {
 		case 'ADD_ORDER_ITEM':
-			return [ ...orderItems, action.orderItem];
+			console.log(action.orderItem);
+
+			let ois = [ ...orderItems, action.orderItem];
+
+			console.log(ois);
+			return ois;
 		default:
 			return orderItems;
 	}
 
 }
 
-export default orderItemReducer;
+export default orderItems;

@@ -13,8 +13,10 @@ class MenuItem extends React.Component {
 		super(props);
 
 		this.extraCharge = 0;
-		this.unit = 1;
+		this.quantity = 1;
 		this.selectedOptions = [];
+
+		console.log(addOrderItem);
 	}
 
 	listOption = (option) => {
@@ -42,18 +44,22 @@ class MenuItem extends React.Component {
 		console.log(this.selectedOptions);
 	}
 
+	createExtra() {
+		return {listId:new Date().getTime(), extraCharge:this.extraCharge, quantity:this.quantity, selectedOptions:this.selectedOptions};
+	}
 	onAddOrderItem = (event) => {
 		event.preventDefault();
-
-		let orderItem = { ...this.props.menuItem, extraCharge:this.extraCharge, unit:this.unit};
+		let orderItem = { ...this.props.menuItem, ...this.createExtra()};
 		console.log(orderItem);
 		//dispatch(addOrderItem(orderItem));
-
+		console.log(this.props.orderItems);
+		console.log(this.props.dispatchAddOrderItem);
+		this.props.dispatchAddOrderItem(orderItem);
 	}
 
 	onChangeUnit = (event) => {
-		console.log('trigger change unit');
-		this.unit = event.target.value;
+		console.log('trigger change quantity');
+		this.quantity = event.target.value;
 	}
 	render() {
 		return(
@@ -70,15 +76,12 @@ class MenuItem extends React.Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return {orderItems:state.orderItems};
-}
+const mapStateToProps = (state) => ({
+	orderItems:state.orderItems
+})
 
-function mapDispatchToProps() {
-	return({
-		addOrderItem:addOrderItem
-	});
-}
+const mapDispatchToProps = {dispatchAddOrderItem:(orderItem) => addOrderItem(orderItem)}
+
 
 MenuItem = connect(mapStateToProps, mapDispatchToProps)(MenuItem);
 
