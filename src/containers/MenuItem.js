@@ -2,7 +2,7 @@
  * Created by elliot on 5/26/17.
  */
 import React from 'react';
-import { Button, Input, Checkbox, Form } from 'semantic-ui-react';
+import { Grid, Button, Input, Checkbox, Form } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -32,7 +32,7 @@ class MenuItem extends React.Component {
 
 		if (target.checked) {
 			this.extraCharge += option.charge;
-			this.selectedOptions.push(option)
+			this.selectedOptions = [ ...this.selectedOptions, option];
 		} else {
 			this.extraCharge -= option.charge;
 			this.selectedOptions = this.selectedOptions.filter((selectedOption) => {return option.id != selectedOption.id});
@@ -45,11 +45,11 @@ class MenuItem extends React.Component {
 	}
 
 	createExtra() {
-		return {listId:new Date().getTime(), extraCharge:this.extraCharge, quantity:this.quantity, selectedOptions:this.selectedOptions};
+		//return {listId:new Date().getTime(), extraCharge:this.extraCharge, quantity:this.quantity, selectedOptions:this.selectedOptions, subTotalPrice:};
 	}
 	onAddOrderItem = (event) => {
 		event.preventDefault();
-		let orderItem = { ...this.props.menuItem, ...this.createExtra()};
+		let orderItem = { ...this.props.menuItem, listId:new Date().getTime(), extraCharge:this.extraCharge, quantity:this.quantity, selectedOptions:this.selectedOptions, subTotalPrice:(this.props.menuItem.price + this.extraCharge)*this.quantity};
 		console.log(orderItem);
 		//dispatch(addOrderItem(orderItem));
 		console.log(this.props.orderItems);
@@ -64,13 +64,21 @@ class MenuItem extends React.Component {
 	render() {
 		return(
 			<Form>
-				<div>
-					{this.props.menuItem.name}
+				<Grid celled>
+					<Grid.Row>
+						<Grid.Column width={3}>
+					{this.props.menuItem.name} - {this.props.menuItem.price}
+						</Grid.Column>
+						<Grid.Column width={10}>
+						{this.props.menuItem.options.map(this.listOption)}
+							<Form.Input type='number' onChange={this.onChangeUnit} min={1} defaultValue={1}/>
+						</Grid.Column>
+						<Grid.Column width={3}>
 
-					{this.props.menuItem.options.map(this.listOption)}
-					<Form.Input type='number' onChange={this.onChangeUnit} min={1} defaultValue={1}/>
-					<Form.Button color='blue' onClick={this.onAddOrderItem} content="加入"/>
-				</div>
+						<Form.Button color='blue' onClick={this.onAddOrderItem} content="加入"/>
+						</Grid.Column>
+					</Grid.Row>
+				</Grid>
 			</Form>
 		);
 	}

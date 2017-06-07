@@ -5,16 +5,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {Button} from 'semantic-ui-react';
+import { removeOrderItem } from '../actions';
 
 class ClientBoard extends React.Component {
 	onLogButton = (event) => {
 		console.log(this.props.orderItems);
 	}
 
+	onRemoveButton = (event, target, orderItem) => {
+		this.props.dispatchRemoveOrderItem(orderItem);
+	}
+
 	listOrderItems = (orderItem) => {
 		return (
 			<div key={orderItem.listId}>
-				{orderItem.listId} - {orderItem.name} - {orderItem.quantity} - with extraOption {orderItem.selectedOptions.length}
+				{orderItem.listId} - {orderItem.name} - {orderItem.quantity} - with extraOption {orderItem.selectedOptions.length} - subtotal: {orderItem.subTotalPrice}<Button onClick={(e, target) => this.onRemoveButton(e, target, orderItem)}>Remove</Button>
 			</div>
 		);
 	}
@@ -24,7 +29,6 @@ class ClientBoard extends React.Component {
 			<div>
 				<h2>Board</h2>
 				{this.props.orderItems.map(this.listOrderItems)}
-				<Button onClick={this.onLogButton}>log props</Button>
 			</div>
 		);
 	}
@@ -34,8 +38,8 @@ const mapStateToProps = (state) => ({
 	orderItems:state.orderItems
 })
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {dispatchRemoveOrderItem:(orderItem) => removeOrderItem(orderItem)}
 
-ClientBoard = connect(mapStateToProps, {})(ClientBoard);
+ClientBoard = connect(mapStateToProps, mapDispatchToProps)(ClientBoard);
 
 export default ClientBoard;

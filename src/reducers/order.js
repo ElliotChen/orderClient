@@ -10,7 +10,9 @@ function orderItems(orderItems = [], action) {
 			let ois = [ ...orderItems, action.orderItem];
 
 			console.log(ois);
-			return ois;
+			return [ ...orderItems, action.orderItem];
+		case 'REMOVE_ORDER_ITEM':
+			return orderItems.filter((orderItem) => {return (orderItem.listId != action.orderItem.listId)});
 		default:
 			return orderItems;
 	}
