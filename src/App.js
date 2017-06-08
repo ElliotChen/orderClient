@@ -15,6 +15,7 @@ import {addOrderItem} from './actions'
 
 import Menu from './components/Menu';
 import ClientBoard from './containers/ClientBoard';
+import ConfirmOrderModal from './containers/ConfirmOrderModal';
 
 const store = createStore(reducer);
 
@@ -26,7 +27,7 @@ class App extends React.Component {
 					<Header as='h1'>Header</Header>
 					<Menu />
 					<ClientBoard />
-					<Button primary>Finish</Button>
+					<ConfirmOrderModal />
 				</Container>
 			</Provider>
 		);
