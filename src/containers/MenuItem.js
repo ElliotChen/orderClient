@@ -67,11 +67,11 @@ class MenuItem extends React.Component {
 				<Grid celled>
 					<Grid.Row>
 						<Grid.Column width={3}>
-							{this.props.menuItem.name} - {this.props.menuItem.price}
+							{this.props.menuItem.name} - {this.props.menuItem.price} - {this.props.menuItem.unit}
 						</Grid.Column>
 						<Grid.Column width={10}>
 							{this.props.menuItem.options.map(this.listOption)}
-							<Form.Input type='number' onChange={this.onChangeUnit} min={1} defaultValue={1}/>
+							<Form.Input type='number' onChange={this.onChangeUnit} size='small' min={1} defaultValue={1} label='數量'/>
 						</Grid.Column>
 						<Grid.Column width={3}>
 							<Form.Button color='blue' onClick={this.onAddOrderItem} content="加入"/>

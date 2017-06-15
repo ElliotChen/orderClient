@@ -16,22 +16,28 @@ import {addOrderItem} from './actions'
 import Menu from './components/Menu';
 import ClientBoard from './containers/ClientBoard';
 import ConfirmOrderModal from './containers/ConfirmOrderModal';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+import Blank from './components/Blank';
+import Client from './components/Client';
+import PosBoard from './components/PosBoard'
+import {OrderState, OrderType} from './commons/Enum';
 
 const store = createStore(reducer);
 
 class App extends React.Component {
 	render() {
+		console.log(`params -> {}`,this.props.param);
 		return (
 			<Provider store={store}>
 				<Container>
-					<Header as='h1'>Header</Header>
+					<Header as='h1'>Menu</Header>
 					<Menu />
-					<ClientBoard />
-					<ConfirmOrderModal />
+					<ClientBoard type={OrderType.FOR_HERR} desk="12"/>
+					<ConfirmOrderModal type={OrderType.FOR_HERR} desk="12"/>
 				</Container>
 			</Provider>
 		);
 	}
 }
-console.log(addOrderItem);
+
 ReactDOM.render(<App />, document.getElementById('main'));

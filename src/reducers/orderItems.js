@@ -5,11 +5,6 @@ function orderItems(orderItems = [], action) {
 	console.log(`trigger ${action.type}`);
 	switch (action.type) {
 		case 'ADD_ORDER_ITEM':
-			console.log(action.orderItem);
-
-			let ois = [ ...orderItems, action.orderItem];
-
-			console.log(ois);
 			return [ ...orderItems, action.orderItem];
 		case 'REMOVE_ORDER_ITEM':
 			return orderItems.filter((orderItem) => {return (orderItem.listId != action.orderItem.listId)});

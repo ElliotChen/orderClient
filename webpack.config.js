@@ -4,7 +4,8 @@ var webpack = require('webpack');
 var config = {
 	context: __dirname + '/src',
 	entry: {
-		app: './App.js'
+		app: './App.js',
+		pos: './Pos.js'
 	},
 	output: {
 		path: __dirname+'/dist',

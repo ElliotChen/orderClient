@@ -4,7 +4,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {Button} from 'semantic-ui-react';
+import {Button, Grid} from 'semantic-ui-react';
 import { removeOrderItem } from '../actions';
 
 class ClientBoard extends React.Component {
@@ -18,17 +18,50 @@ class ClientBoard extends React.Component {
 
 	listOrderItems = (orderItem) => {
 		return (
-			<div key={orderItem.listId}>
-				{orderItem.listId} - {orderItem.name} - {orderItem.quantity} - with extraOption {orderItem.selectedOptions.length} - subtotal: {orderItem.subTotalPrice}<Button onClick={(e, target) => this.onRemoveButton(e, target, orderItem)}>Remove</Button>
-			</div>
+			<Grid.Row key={orderItem.listId}>
+				<Grid.Column>
+					{orderItem.name} - {orderItem.quantity} - {orderItem.unit}
+				</Grid.Column>
+				<Grid.Column>
+					{orderItem.selectedOptions.map(this.listSelectedOptions)}
+				</Grid.Column>
+				<Grid.Column>
+					subtotal: {orderItem.subTotalPrice}
+				</Grid.Column>
+				<Grid.Column>
+					<Button color="red" onClick={(e, target) => this.onRemoveButton(e, target, orderItem)}>Remove</Button>
+				</Grid.Column>
+			</Grid.Row>
 		);
+	}
+
+	listSelectedOptions = (option) => {
+		return(
+			<div>{option.name} - {option.charge}</div>
+		);
+	}
+
+	showTotalPrice(orderItems) {
+		var totalPrice = 0;
+
+		orderItems.forEach((oi) => {totalPrice+=oi.subTotalPrice});
+		console.log(totalPrice);
+		return totalPrice;
 	}
 
 	render() {
 		return (
 			<div>
-				<h2>Board</h2>
-				{this.props.orderItems.map(this.listOrderItems)}
+				<h2>Board - {this.props.type} - Table:{this.props.desk}</h2>
+				<Grid columns='equal'>
+
+						{this.props.orderItems.map(this.listOrderItems)}
+					<Grid.Row>
+						<Grid.Column textAlign="right">
+							<h2> Total {this.showTotalPrice(this.props.orderItems)} </h2>
+						</Grid.Column>
+					</Grid.Row>
+				</Grid>
 			</div>
 		);
 	}
