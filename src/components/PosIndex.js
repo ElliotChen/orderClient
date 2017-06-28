@@ -17,7 +17,7 @@ class PosIndex extends React.Component {
 	}
 	render() {
 		return (
-			<Header as='h1'>POS Screen</Header>
+			<Header as='h1'></Header>
 		);
 	}
 }

@@ -14,18 +14,27 @@ class CheckOutOrderModal extends React.Component {
 
 	}
 	state = {checkOutOrderModalOpen : false};
+
 	close = () => this.setState({ checkOutOrderModalOpen: false });
 	open = () => this.setState({ checkOutOrderModalOpen: true });
 
 	doCheckOutOrder = (event) => {
 		this.props.dispatchCheckOutOrder(this.props.order);
 		this.close();
-	}
+	};
+
 	render() {
 		const {order} = this.props;
+
+		let button = null;
+		if (order.state == OrderState.CHECKOUT) {
+			button = <Button>已結帳</Button>;
+		} else {
+			button = <Button onClick={this.open} color='green'>CheckOut</Button>;
+		}
 		return (
 			<Modal
-				trigger={<Button onClick={this.open}>CheckOut</Button>}
+				trigger={button}
 				open={this.state.checkOutOrderModalOpen}
 				onClose={this.close}
 				size='small'>

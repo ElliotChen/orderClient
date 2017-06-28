@@ -4,6 +4,26 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css">
+	<style>
+		@media print {
+			body * {
+				visibility: hidden;
+			}
+			.section-to-print,
+			.section-to-print * {
+				visibility: visible;
+			}
+			.section-to-print {
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			.section-not-to-print {
+				display: none;
+			}
+		}
+
+	</style>
 	<title>Title</title>
 </head>
 <body>

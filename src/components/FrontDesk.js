@@ -8,6 +8,8 @@ import {Header, Button, Grid, Segment, Table} from 'semantic-ui-react';
 import { addFakeOrder, cookingOrder, servedOrder } from '../actions';
 import {OrderState} from '../commons/Enum';
 import CheckOutOrderModal from './CheckOutOrderModal';
+import InvoiceModal from './InvoiceModal';
+
 class FrontDesk extends React.Component {
 	constructor(props) {
 		super(props);
@@ -24,7 +26,7 @@ class FrontDesk extends React.Component {
 				<Table.Cell>{order.number}</Table.Cell>
 				<Table.Cell>{order.totalPrice}</Table.Cell>
 				<Table.Cell>{order.state}</Table.Cell>
-				<Table.Cell><CheckOutOrderModal order={order} /></Table.Cell>
+				<Table.Cell><CheckOutOrderModal order={order} /><InvoiceModal /></Table.Cell>
 			</Table.Row>
 		);
 	}
@@ -36,7 +38,7 @@ class FrontDesk extends React.Component {
 				<Table celled>
 					<Table.Header>
 						<Table.Row>
-							<Table.HeaderCell>Table</Table.HeaderCell>
+							<Table.HeaderCell>點餐序號</Table.HeaderCell>
 							<Table.HeaderCell>Price</Table.HeaderCell>
 							<Table.HeaderCell>State</Table.HeaderCell>
 							<Table.HeaderCell>Function</Table.HeaderCell>
