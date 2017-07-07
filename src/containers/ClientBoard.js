@@ -51,18 +51,23 @@ class ClientBoard extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<h2>Board - {this.props.type} - Table:{this.props.desk}</h2>
 				<Grid columns='equal'>
-
+					<Grid.Row>
+						<h2>Board - {this.props.type} - Table:{this.props.desk}</h2>
+					</Grid.Row>
 						{this.props.orderItems.map(this.listOrderItems)}
 					<Grid.Row>
-						<Grid.Column textAlign="right">
+						<Grid.Column>
+						</Grid.Column>
+						<Grid.Column>
+						</Grid.Column>
+						<Grid.Column>
 							<h2> Total {this.showTotalPrice(this.props.orderItems)} </h2>
+						</Grid.Column>
+						<Grid.Column>
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>
-			</div>
 		);
 	}
 }

@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import {Button, Modal, Icon} from 'semantic-ui-react';
 import { checkOutOrder } from '../actions';
 import {OrderType, OrderState} from '../commons/Enum';
-
+import CashModal from './CashModal';
+import AlipayModal from './AlipayModal';
 class CheckOutOrderModal extends React.Component {
 	constructor(props) {
 		super(props);
@@ -33,7 +34,7 @@ class CheckOutOrderModal extends React.Component {
 			button = <Button onClick={this.open} color='green'>CheckOut</Button>;
 		}
 		return (
-			<Modal
+			<Modalq
 				trigger={button}
 				open={this.state.checkOutOrderModalOpen}
 				onClose={this.close}
@@ -43,6 +44,8 @@ class CheckOutOrderModal extends React.Component {
 					${order.totalPrice}
 				</Modal.Content>
 				<Modal.Actions>
+					<CashModal totalPrice={order.totalPrice}/>
+					<AlipayModal totalPrice={order.totalPrice}/>
 					<Button color='red' onClick={this.close}>
 						<Icon name='cancel' /> No
 					</Button>
@@ -50,7 +53,7 @@ class CheckOutOrderModal extends React.Component {
 						<Icon name='check' onClick={this.doCheckOutOrder}/> Yes
 					</Button>
 				</Modal.Actions>
-			</Modal>
+			</Modalq>
 		);
 	}
 }

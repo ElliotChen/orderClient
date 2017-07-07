@@ -29,7 +29,7 @@ class App extends React.Component {
 		console.log(`params -> {}`,this.props.param);
 		return (
 			<Provider store={store}>
-				<Container>
+				<Container fluid="true">
 					<Header as='h1'>Menu</Header>
 					<Menu />
 					<ClientBoard type={OrderType.FOR_HERR} desk="12"/>
