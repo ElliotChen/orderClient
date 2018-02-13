@@ -5,22 +5,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
-import {Container, Header, Button} from 'semantic-ui-react';
+import {Header} from 'semantic-ui-react';
 
 import Menu from './Menu';
 import ClientBoard from '../containers/ClientBoard';
 import ConfirmOrderModal from '../containers/ConfirmOrderModal';
+import {OrderType} from "../commons/Enum";
 
 
 class Client extends React.Component {
 	render() {
 		return (
-				<Container>
-					<Header as='h1'>Header</Header>
-					<Menu />
-					<ClientBoard type='TakeOut'/>
-					<ConfirmOrderModal />
-				</Container>
+			<div>
+				<Header as='h1'>Menu</Header>
+				<Menu />
+				<ClientBoard type={OrderType.FOR_HERR} desk="12"/>
+				<ConfirmOrderModal type={OrderType.FOR_HERR} desk="12"/>
+			</div>
 		);
 	}
 }

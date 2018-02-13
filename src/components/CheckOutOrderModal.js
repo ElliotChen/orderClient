@@ -34,7 +34,7 @@ class CheckOutOrderModal extends React.Component {
 			button = <Button onClick={this.open} color='green'>CheckOut</Button>;
 		}
 		return (
-			<Modalq
+			<Modal
 				trigger={button}
 				open={this.state.checkOutOrderModalOpen}
 				onClose={this.close}
@@ -53,7 +53,7 @@ class CheckOutOrderModal extends React.Component {
 						<Icon name='check' onClick={this.doCheckOutOrder}/> Yes
 					</Button>
 				</Modal.Actions>
-			</Modalq>
+			</Modal>
 		);
 	}
 }

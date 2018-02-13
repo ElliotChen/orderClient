@@ -9,8 +9,9 @@ import {OrderState} from '../commons/Enum';
 function orders(orders = [], action) {
 	console.log(`trigger ${action.type}`);
 	let order = action.order;
-	console.log(`orders - ${orders}`)
-	console.log(`accept order - ${order}`)
+	console.log(`orders - ${orders}`);
+	console.log(`accept order - ${order}`);
+	console.log(order);
 	switch (action.type) {
 		case 'ADD_FAKE_ORDER':
 			return [ ...orders, order];

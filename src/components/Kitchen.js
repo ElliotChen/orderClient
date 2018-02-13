@@ -36,6 +36,8 @@ class Kitchen extends React.Component {
 	}
 
 	listOrderItem = (orderItem) => {
+		console.log("KT "+orderItem.name);
+		console.log(orderItem);
 		return (
 			<div key={orderItem.listId}>
 					{orderItem.name} - {orderItem.quantity}{orderItem.unit} {orderItem.selectedOptions.map(this.listSelectedOptions)}

@@ -5,7 +5,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {Button, Modal, Icon} from 'semantic-ui-react';
-import { createClientOrder } from '../actions';
+import { createOrder } from '../actions';
 import {OrderType, OrderState} from '../commons/Enum';
 
 class ConfirmOrderModal extends React.Component {
@@ -25,13 +25,13 @@ class ConfirmOrderModal extends React.Component {
 		orderItems.forEach((oi) => {totalPrice+=oi.subTotalPrice});
 
 		let clientOrder = {
-			id:'ClientOrder01',
+			id:'ClientOrder' +  new Date(),
 			totalPrice:totalPrice,
 			number:1,
 			desk: this.props.desk,
 			type: this.props.type,
 			state: OrderState.PREPARE,
-			orderItems:[orderItems]
+			orderItems:orderItems
 		}
 
 		console.log(clientOrder);
@@ -70,7 +70,7 @@ const mapStateToProps = (state) => ({
 	clientOrder:state.clientOrder
 })
 
-const mapDispatchToProps = {dispatchCreateClientOrder:(clientOrder) => createClientOrder(clientOrder)}
+const mapDispatchToProps = {dispatchCreateClientOrder:(clientOrder) => createOrder(clientOrder)}
 
 ConfirmOrderModal = connect(mapStateToProps, mapDispatchToProps)(ConfirmOrderModal);
 

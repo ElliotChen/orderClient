@@ -13,14 +13,9 @@ class CashModal extends React.Component {
 		this.state = {change:0}
 	}
 
-	handleSubmit = (event) => {
-		event.preventDefault();
-
-	}
-
 	handleChange = (event) => {
-		event.preventDefault();
-		console.log(event.target.value);
+		//event.preventDefault();
+		//console.log(event.target.value);
 
 		let moneyCollection = event.target.value ? event.target.value:0;
 		this.setState({change:(moneyCollection-this.props.totalPrice)});

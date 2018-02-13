@@ -17,6 +17,7 @@ class ClientBoard extends React.Component {
 	}
 
 	listOrderItems = (orderItem) => {
+		console.log(orderItem);
 		return (
 			<Grid.Row key={orderItem.listId}>
 				<Grid.Column>
