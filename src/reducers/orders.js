@@ -5,8 +5,9 @@
 //import {ADD_FAKE_ORDER} from './actions'
 
 import {OrderState} from '../commons/Enum';
+import {fakeOrders} from '../commons/DataUtil';
 
-function orders(orders = [], action) {
+function orders(orders = fakeOrders, action) {
 	console.log(`trigger ${action.type}`);
 	let order = action.order;
 	console.log(`orders - ${orders}`);

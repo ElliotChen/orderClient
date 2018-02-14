@@ -3,10 +3,10 @@
  */
 export const OrderState = {
 	UNKNOWN:'Unknown',
-	PREPARE:'Prepare',
-	COOKING:'Cooking',
-	SERVED:'Served',
-	CHECKOUT:'CheckOut',
+	PREPARE:'準備中',
+	COOKING:'烹飪中',
+	SERVED:'已出餐',
+	CHECKOUT:'已結帳',
 }
 
 export const OrderType = {

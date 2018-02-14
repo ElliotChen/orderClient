@@ -30,7 +30,7 @@ class ClientBoard extends React.Component {
 					subtotal: {orderItem.subTotalPrice}
 				</Grid.Column>
 				<Grid.Column>
-					<Button color="red" onClick={(e, target) => this.onRemoveButton(e, target, orderItem)}>Remove</Button>
+					<Button color="red" onClick={(e, target) => this.onRemoveButton(e, target, orderItem)}>取消</Button>
 				</Grid.Column>
 			</Grid.Row>
 		);

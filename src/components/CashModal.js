@@ -10,8 +10,11 @@ class CashModal extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {change:0}
+		this.state = {change:0, cashModalOpen:false}
 	}
+
+	handleClose = () => this.setState({ cashModalOpen: false });
+	handleOpen = () => this.setState({ cashModalOpen: true });
 
 	handleChange = (event) => {
 		//event.preventDefault();
@@ -24,7 +27,9 @@ class CashModal extends React.Component {
 		const {totalPrice} = this.props;
 		return (
 			<Modal
-				trigger={<Button primary icon>現金結帳<Icon name='right chevron' /></Button>}
+				trigger={<Button primary icon onClick={this.handleOpen}>現金結帳<Icon name='right chevron' /></Button>}
+				open={this.state.cashModalOpen}
+				onClose={this.handleClose}
 			>
 				<Modal.Header>現金結帳</Modal.Header>
 				<Modal.Content>
@@ -35,6 +40,12 @@ class CashModal extends React.Component {
 					</form>
 				</Modal.Content>
 				<Modal.Actions>
+					<Button color='red'>
+						<Icon name='cancel' onClick={this.handleClose}/> No
+					</Button>
+					<Button color='green'>
+						<Icon name='check' onClick={this.handleClose}/> Yes
+					</Button>
 				</Modal.Actions>
 			</Modal>
 		);

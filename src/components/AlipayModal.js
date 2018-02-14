@@ -9,13 +9,19 @@ import {Button, Modal, Icon} from 'semantic-ui-react';
 class AlipayModal extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {alipayModalOpen:false}
 	}
+
+	handleClose = () => this.setState({ alipayModalOpen: false });
+	handleOpen = () => this.setState({ alipayModalOpen: true });
 
 	render() {
 		const {totalPrice} = this.props;
 		return (
 			<Modal
-				trigger={<Button primary icon>支付寶<Icon name='right chevron' /></Button>}
+				trigger={<Button primary icon onClick={this.handleOpen}>支付寶<Icon name='right chevron' /></Button>}
+				open={this.state.alipayModalOpen}
+				onClose={this.handleClose}
 			>
 				<Modal.Header>支付寶結帳</Modal.Header>
 				<Modal.Content>
@@ -25,6 +31,12 @@ class AlipayModal extends React.Component {
 					</form>
 				</Modal.Content>
 				<Modal.Actions>
+					<Button color='red'>
+						<Icon name='cancel' onClick={this.handleClose}/> No
+					</Button>
+					<Button color='green'>
+						<Icon name='check' onClick={this.handleClose}/> Yes
+					</Button>
 				</Modal.Actions>
 			</Modal>
 		);

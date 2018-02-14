@@ -33,11 +33,11 @@ class InvoiceModal extends  React.Component {
 					trigger={button}
 					open={this.state.checkInvoiceModalOpen}
 					onClose={this.close}
-					size='small'>
+					size='fullscreen'>
 					<Modal.Header>Invoice</Modal.Header>
 					<Modal.Content>
-						<div className="section-to-print" classID="section-to-print">
-							<img src="invoice.jpg" />
+						<div>
+							<img src="invoice.jpg" className="section-to-print" classID="section-to-print"/>
 						</div>
 					</Modal.Content>
 					<Modal.Actions>

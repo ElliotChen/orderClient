@@ -31,7 +31,7 @@ class CheckOutOrderModal extends React.Component {
 		if (order.state == OrderState.CHECKOUT) {
 			button = <Button>已結帳</Button>;
 		} else {
-			button = <Button onClick={this.open} color='green'>CheckOut</Button>;
+			button = <Button onClick={this.open} color='green'>結帳</Button>;
 		}
 		return (
 			<Modal

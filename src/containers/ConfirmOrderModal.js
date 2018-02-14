@@ -44,13 +44,13 @@ class ConfirmOrderModal extends React.Component {
 		console.log(orderItems.length);
 		return (
 			<Modal
-				trigger={<Button color="green" onClick={orderItems.length > 0? this.open:this.close}>CheckOut</Button>}
+				trigger={<Button color="green" onClick={orderItems.length > 0? this.open:this.close}>送出點菜單</Button>}
 				open={this.state.confirmOrderModalOpen}
 				onClose={this.close}
 				size='small'>
 				<Modal.Header>Order Submit</Modal.Header>
 				<Modal.Content>
-					Finish your order?
+					送出點菜單?
 				</Modal.Content>
 				<Modal.Actions>
 					<Button color='red' onClick={this.close}>

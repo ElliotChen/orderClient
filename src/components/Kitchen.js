@@ -50,10 +50,10 @@ class Kitchen extends React.Component {
 		let color = 'green'
 		if (order.state == OrderState.PREPARE) {
 			color = 'blue';
-			button = <Button onClick={(event, target) => {this.onCookingClick(event, target, order)}}>Cooking</Button>
+			button = <Button onClick={(event, target) => {this.onCookingClick(event, target, order)}}>開始烹飪</Button>
 		} else if (order.state == OrderState.COOKING) {
 			color = 'green';
-			button = <Button onClick={(event, target) => {this.onServedClick(event, target, order)}}>Served</Button>
+			button = <Button onClick={(event, target) => {this.onServedClick(event, target, order)}}>出餐</Button>
 		} else if (order.state == OrderState.SERVED) {
 			color = 'green';
 		}
